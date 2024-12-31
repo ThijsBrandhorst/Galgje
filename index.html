@@ -1,27 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Hangman - Dutch Cities</title>
-    <script src="js/logic.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galgje</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script defer src="js/script.js"></script>
 </head>
 
 <body>
-    <div class="card">
-        <h1>Guess the city</h1>
-        <p id="displayWord"></p>
-        <p>Guess one letter:
-            <input type="text" maxlength="1" id="letterInput"> 
-        </p>
-        <p>Guess Chances: <span id="guessChances"></span></p>
-        <button id="button" onclick="guessLetter()"> Submit </button><br>
-        <button onclick="reset()"> New Game </button>
-        <div id="hangman">
-            <!-- This div is for displaying the Hangman ASCII art. -->
-            <pre id="hangman-ascii"></pre>
+    <div class="container">
+        <div class="header">
+            <h1>Galgje</h1>
+            <p>Selecteer een thema en raad het woord!</p>
         </div>
 
+        <div class="theme-selector">
+            <label for="theme">Kies een thema:</label>
+            <select id="theme" onchange="changeTheme()">
+                <option value="steden">Steden</option>
+                <option value="dieren">Dieren</option>
+                <option value="films">Films</option>
+                <option value="beroepen">Beroepen</option>
+                <option value="eten">Eten</option>
+            </select>
+        </div>
+
+        <div class="game-area">
+            <p id="displayWord" class="word-display">_ _ _ _ _</p>
+            <p>Raad een letter:
+                <input type="text" maxlength="1" id="letterInput" autofocus> 
+            </p>
+            <p>Resterende kansen: <span id="guessChances">7</span></p>
+            <button id="guessButton" onclick="guessLetter()">Invoeren</button>
+            <button onclick="resetGame()">Nieuw Spel</button>
+        </div>
+
+        <div id="popup" class="popup hidden">
+            <div class="popup-content">
+                <p id="popup-message"></p>
+                <button onclick="closePopup()">Sluiten</button>
+            </div>
+        </div>
     </div>
 </body>
 
